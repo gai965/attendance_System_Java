@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.attendanceAPI.data.Employees;
+import com.example.demo.attendanceAPI.data.Clocks;
 import com.example.demo.attendanceAPI.repository.AttendanceApiRepository;
 
 @Service
@@ -21,5 +22,11 @@ public class AttendanceApiService {
 		Employees[] employeesList = attendanceApiRepository.getEmployeesList();
 
 		return Arrays.asList(employeesList);
+	}
+	
+	public List<Clocks> getEmployeeDetail(int id) throws IOException {
+		Clocks[] employeeDetail = attendanceApiRepository.getEmployeesemployeeDetail(id);
+
+		return Arrays.asList(employeeDetail);
 	}
 }

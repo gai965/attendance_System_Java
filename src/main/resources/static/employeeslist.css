@@ -1,0 +1,26 @@
+p {
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+
+.employee_item {
+	display: flex;
+	margin-left: 20px;
+}
+
+.employee_id {
+	width: 3%;
+}
+
+.employee_name {
+	width: 20%;
+}
+
+.employee_hometown {
+	width: 15%;	
+}
+
+.employee_joiningmonth {
+	width: 13%;		
+}
