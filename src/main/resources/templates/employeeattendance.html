@@ -11,10 +11,10 @@
 
 <body>
 	<h1>詳細画面</h1>
-	<li th:each="employee : ${employeeIndividual}">
+	<div th:each="employee : ${employeeIndividual}">
 		<h2 class="employee_name" th:text="${employee.name}"></h2>
-	</li>
-	<div>
+	</div>
+	<div class="attendance_mainArea">
 		<div class="attendance_detail" th:each="attendance : ${employeeAttendance}">
 			<div class="attendance_startTimeWrap">
 				<p>出勤日時</p>
@@ -33,5 +33,8 @@
 				<p th:text="${attendance.breakEnd}"></p>				
 			</div>
 		</div>
+		<form action="employeeslist" method="get">
+			<button type="submit">社員一覧へ</button>
+		</form>
 	</div>
 </body>

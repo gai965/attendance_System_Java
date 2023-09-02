@@ -8,8 +8,12 @@ p {
 	margin: 10px;	
 }
 
+.attendance_mainArea{
+	margin: 10px;	
+}
+
 .attendance_detail {
-	display: flex;	
+	display: flex;
 }
 
 .attendance_startTimeWrap,
