@@ -16,9 +16,8 @@
 			<p class="employee_name" th:text="${employee.name}"></p>
 			<p class="employee_hometown" th:text="${employee.hometown}"></p>
 			<p class="employee_joiningmonth" th:text="${employee.joiningMonth}"></p>
-			<form action="employeedetail" method="get">
+			<form action="employeeattendance" method="get">
 				<input type="hidden" name= "employeeid" th:value=${employee.id}>
-				<input type="hidden" name= "employeename" th:value=${employee.name}>
 				<button type="submit">詳細</button>
 			</form>
 		</li>

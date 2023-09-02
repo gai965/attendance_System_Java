@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>詳細画面
+	</title>
+	<meta charset="utf-8" />
+	<link th:href="@{reset.css}" rel="styleSheet">
+	<link th:href="@{workinformation.css}" rel="styleSheet">
+</head>
+
+<body>
+	<h1>詳細画面</h1>
+	<li th:each="employee : ${employeeIndividual}">
+		<h2 class="employee_name" th:text="${employee.name}"></h2>
+	</li>
+	<div>
+		<div class="attendance_detail" th:each="attendance : ${employeeAttendance}">
+			<div class="attendance_startTimeWrap">
+				<p>出勤日時</p>
+				<p th:text="${attendance.clockIn}"></p>
+			</div>
+			<div class="break_startTimeWrap">				
+				<p>休憩開始日時</p>
+				<p th:text="${attendance.clockOut}"></p>
+			</div>
+			<div class="break_endTimeWrap">	
+				<p>休憩終了日時</p>
+				<p th:text="${attendance.breakStart}"></p>
+			</div>
+			<div class="attendance_endTimeWrap">
+				<p>退勤日時</p>
+				<p th:text="${attendance.breakEnd}"></p>				
+			</div>
+		</div>
+	</div>
+</body>

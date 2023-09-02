@@ -1,0 +1,21 @@
+p {
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+
+.employee_name {
+	margin: 10px;	
+}
+
+.attendance_detail {
+	display: flex;	
+}
+
+.attendance_startTimeWrap,
+.break_startTimeWrap,
+.break_endTimeWrap,
+.attendance_endTimeWrap {
+	margin: 5px;	
+	text-align:center;
+}

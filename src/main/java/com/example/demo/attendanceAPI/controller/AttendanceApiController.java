@@ -11,31 +11,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.attendanceAPI.data.Employees;
 import com.example.demo.attendanceAPI.data.Clocks;
 import com.example.demo.attendanceAPI.service.AttendanceApiService;
+import com.example.demo.attendanceAPI.service.EmployeeApiService;
 
 @Controller
 public class AttendanceApiController {
 	private final AttendanceApiService attendanceApiService;
+	private final EmployeeApiService employeeApiService;
 
-	public AttendanceApiController(AttendanceApiService attendanceApiService) {
+	public AttendanceApiController(AttendanceApiService attendanceApiService, EmployeeApiService employeeApiService) {
 		this.attendanceApiService = attendanceApiService;
+		this.employeeApiService = employeeApiService;
 	}
 
 	@GetMapping("employeeslist")
 	public String employeeListDisplay(Model model) throws IOException {
-		List<Employees> employeesList = attendanceApiService.getEmployeesList();
+		List<Employees> employeesList = employeeApiService.getEmployeesList();
 
 		model.addAttribute("employeesList", employeesList);
 
 		return "employeeslist";
 	}
 
-	@GetMapping("employeedetail")
-	public String employeeDetailDisplay(@RequestParam("employeeid") int employeeid,
-			@RequestParam("employeename") String employeename, Model model) throws IOException {
-		List<Clocks> employeeDetail = attendanceApiService.getEmployeeDetail(employeeid);
-				
-		model.addAttribute("employeeDetail", employeeDetail);
-		return "employeedetail";
+	@GetMapping("employeeattendance")
+	public String employeeAttendanceDisplay(@RequestParam("employeeid") int employeeid, Model model)
+			throws IOException {
+
+		List<Clocks> employeeAttendance = attendanceApiService.getEmployeeAttendance(employeeid);
+		List<Employees> employeeIndividual = employeeApiService.getEmployeeIndividual(employeeid);
+
+		model.addAttribute("employeeAttendance", employeeAttendance);
+		model.addAttribute("employeeIndividual", employeeIndividual);
+
+		return "employeeattendance";
 	}
 
 }
