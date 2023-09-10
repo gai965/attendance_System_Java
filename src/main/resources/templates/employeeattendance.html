@@ -15,6 +15,17 @@
 		<h2 class="employee_name" th:text="${employee.name}"></h2>
 	</div>
 	<div class="attendance_mainArea">
+		<div>
+			<form action="attendanceregister" method="post">
+				<div th:each="employee : ${employeeIndividual}">
+					<input type="hidden" name="employeeid" th:value=${employee.id}>
+				</div>
+				<button type="submit" name="type" value="clockIn">出勤</button>
+				<button type="submit" name="type" value="breakStart">休憩開始</button>
+				<button type="submit" name="type" value="breakEnd">休憩終了</button>
+				<button type="submit" name="type" value="clockOut">退勤</button>
+			</form>
+		</div>
 		<div class="attendance_detail" th:each="attendance : ${employeeAttendance}">
 			<div class="attendance_startTimeWrap">
 				<p>出勤日時</p>

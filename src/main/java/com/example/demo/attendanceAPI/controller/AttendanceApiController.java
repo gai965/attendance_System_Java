@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.attendanceAPI.data.Employees;
@@ -23,21 +24,27 @@ public class AttendanceApiController {
 		this.employeeApiService = employeeApiService;
 	}
 
-	@GetMapping("employeeslist")
-	public String employeeListDisplay(Model model) throws IOException {
-		List<Employees> employeesList = employeeApiService.getEmployeesList();
-
-		model.addAttribute("employeesList", employeesList);
-
-		return "employeeslist";
-	}
-
 	@GetMapping("employeeattendance")
-	public String employeeAttendanceDisplay(@RequestParam("employeeid") int employeeid, Model model)
+	public String employeeAttendanceDisplay(@RequestParam("employeeid") int employeeId, Model model)
 			throws IOException {
 
-		List<Clocks> employeeAttendance = attendanceApiService.getEmployeeAttendance(employeeid);
-		List<Employees> employeeIndividual = employeeApiService.getEmployeeIndividual(employeeid);
+		List<Clocks> employeeAttendance = attendanceApiService.getEmployeeAttendance(employeeId);
+		List<Employees> employeeIndividual = employeeApiService.getEmployeeIndividual(employeeId);
+
+		model.addAttribute("employeeAttendance", employeeAttendance);
+		model.addAttribute("employeeIndividual", employeeIndividual);
+
+		return "employeeattendance";
+	}
+
+	@PostMapping("attendanceregister")
+	public String attendanceRegister(@RequestParam("employeeid") int employeeId,
+			@RequestParam("type") String type, Model model) throws IOException {
+		
+		attendanceApiService.registerAttendance(employeeId, type);
+
+		List<Clocks> employeeAttendance = attendanceApiService.getEmployeeAttendance(employeeId);
+		List<Employees> employeeIndividual = employeeApiService.getEmployeeIndividual(employeeId);
 
 		model.addAttribute("employeeAttendance", employeeAttendance);
 		model.addAttribute("employeeIndividual", employeeIndividual);
